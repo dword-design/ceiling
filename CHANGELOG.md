@@ -1,3 +1,10 @@
+## [2.2.8](https://github.com/dword-design/ceiling/compare/v2.2.7...v2.2.8) (2020-12-02)
+
+
+### Bug Fixes
+
+* **config:** Update changed files ([c784c06](https://github.com/dword-design/ceiling/commit/c784c06f770fb29568b9e0aae641ce0972babe09))
+
 ## [2.2.7](https://github.com/dword-design/ceiling/compare/v2.2.6...v2.2.7) (2020-08-23)
 
 

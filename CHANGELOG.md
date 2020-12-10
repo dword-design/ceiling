@@ -1,3 +1,10 @@
+## [2.2.9](https://github.com/dword-design/ceiling/compare/v2.2.8...v2.2.9) (2020-12-10)
+
+
+### Bug Fixes
+
+* **deps:** update dependency execa to v5 ([8e7da77](https://github.com/dword-design/ceiling/commit/8e7da77bef3b090f47c13ce846d136911ba62b01))
+
 ## [2.2.8](https://github.com/dword-design/ceiling/compare/v2.2.7...v2.2.8) (2020-12-02)
 
 

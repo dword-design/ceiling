@@ -1,3 +1,10 @@
+## [2.2.10](https://github.com/dword-design/ceiling/compare/v2.2.9...v2.2.10) (2021-02-17)
+
+
+### Bug Fixes
+
+* upgrades ([26ea88f](https://github.com/dword-design/ceiling/commit/26ea88ff24c4161ac58c3c52b2bcec54e42a3fb9))
+
 ## [2.2.9](https://github.com/dword-design/ceiling/compare/v2.2.8...v2.2.9) (2020-12-10)
 
 

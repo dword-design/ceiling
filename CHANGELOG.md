@@ -1,3 +1,10 @@
+## [2.2.11](https://github.com/dword-design/ceiling/compare/v2.2.10...v2.2.11) (2021-03-09)
+
+
+### Bug Fixes
+
+* update dependency inquirer to v8 ([0a5ed5e](https://github.com/dword-design/ceiling/commit/0a5ed5ef7a923123d0962a635950ce7d39c657bc))
+
 ## [2.2.10](https://github.com/dword-design/ceiling/compare/v2.2.9...v2.2.10) (2021-02-17)
 
 

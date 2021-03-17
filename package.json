@@ -3,6 +3,7 @@
   "version": "2.2.11",
   "description": "An extensible Node.js library and command-line tool to sync databases and files between endpoints",
   "repository": "dword-design/ceiling",
+  "funding": "https://www.buymeacoffee.com/dword",
   "license": "MIT",
   "author": "Sebastian Landwehr <info@dword-design.de>",
   "main": "dist/index.js",

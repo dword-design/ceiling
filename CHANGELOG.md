@@ -1,3 +1,10 @@
+## [2.2.13](https://github.com/dword-design/ceiling/compare/v2.2.12...v2.2.13) (2021-03-23)
+
+
+### Bug Fixes
+
+* update dependency @dword-design/functions to v3 ([#24](https://github.com/dword-design/ceiling/issues/24)) ([8277a32](https://github.com/dword-design/ceiling/commit/8277a32654c3561a9a7cc465a560f48e0d70d8ad))
+
 ## [2.2.12](https://github.com/dword-design/ceiling/compare/v2.2.11...v2.2.12) (2021-03-22)
 
 

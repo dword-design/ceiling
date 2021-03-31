@@ -57,11 +57,13 @@ export default {
         }
       `,
       })
+
       const childProcess = execa(require.resolve('./cli'), ['migrate'], {
         all: true,
       })
       await pEvent(childProcess.all, 'data')
       childProcess.stdin.write('y\n')
+
       const output = await childProcess
       expect(output.all |> stripAnsi).toEqual(endent`
       ? Are you sure you want to …
@@ -116,6 +118,7 @@ export default {
         }
       `,
       })
+
       const output = await execa(require.resolve('./cli'), ['migrate', '-y'], {
         all: true,
       })
@@ -153,6 +156,7 @@ export default {
         }
       `,
       })
+
       const output = await execa(require.resolve('./cli'), ['migrate', '-y'], {
         all: true,
       })
@@ -182,6 +186,7 @@ export default {
         }
       `,
       })
+
       const output = await execa(require.resolve('./cli'), ['migrate', '-y'], {
         all: true,
       })
@@ -245,6 +250,7 @@ export default {
         }
       `,
       })
+
       const output = await execa(require.resolve('./cli'), ['migrate', '-y'], {
         all: true,
       })
@@ -290,6 +296,7 @@ export default {
         }
       `,
       })
+
       const output = await execa(require.resolve('./cli'), ['migrate', '-y'], {
         all: true,
       })

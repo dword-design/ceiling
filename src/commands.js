@@ -1,5 +1,6 @@
 import {
   endent,
+  fromPairs,
   identity,
   isEmpty,
   join,
@@ -12,7 +13,6 @@ import {
   pullAll,
   sortBy,
   values,
-  zipObject,
 } from '@dword-design/functions'
 import globby from 'globby'
 import inquirer from 'inquirer'
@@ -25,6 +25,7 @@ import config from './config'
 const sync = async (operation, endpointName = 'live', options) => {
   const fromEndpoint =
     config.endpoints[operation === 'push' ? 'local' : endpointName]
+
   const toEndpoint =
     config.endpoints[operation === 'push' ? endpointName : 'local']
   if (
@@ -34,13 +35,16 @@ const sync = async (operation, endpointName = 'live', options) => {
         config.plugins
         |> mapValues((plugin, pluginName) => {
           const fromPluginConfig = fromEndpoint?.[pluginName]
+
           const toPluginConfig = toEndpoint?.[pluginName]
+
           return `  - ${fromPluginConfig |> plugin.endpointToString} => ${
             toPluginConfig |> plugin.endpointToString
           }\n`
         })
         |> values
         |> join('')
+
       return (
         inquirer.prompt({
           default: false,
@@ -60,18 +64,22 @@ const sync = async (operation, endpointName = 'live', options) => {
   }
   if (config.plugins |> isEmpty) {
     console.log('No plugins specified. Doing nothing …')
+
     return undefined
   }
+
   return (
     config.plugins
     |> mapValues((plugin, pluginName) => {
       const fromPluginConfig = fromEndpoint?.[pluginName]
+
       const toPluginConfig = toEndpoint?.[pluginName]
       console.log(
         `${plugin.endpointToString(
           fromPluginConfig
         )} => ${plugin.endpointToString(toPluginConfig)} …`
       )
+
       return plugin.sync(fromPluginConfig, toPluginConfig)
     })
     |> values
@@ -85,43 +93,48 @@ export default {
     description: 'Migrate data at an endpoint',
     handler: async (endpointName = 'local', options) => {
       const endpoint = config.endpoints[endpointName]
+
       const shortPluginNames =
         globby('*', { cwd: 'migrations', onlyDirectories: true })
         |> await
         |> sortBy(identity)
+
       const migrations =
-        zipObject(
-          shortPluginNames
-            |> map(shortName =>
-              pluginNameToPackageName(shortName, 'ceiling-plugin')
-            ),
-          shortPluginNames
-            |> map(async shortPluginName => {
-              const pluginName = pluginNameToPackageName(
-                shortPluginName,
-                'ceiling-plugin'
-              )
-              const pluginConfig = endpoint?.[pluginName]
-              const plugin = config.plugins[pluginName]
-              const executedMigrations =
-                pluginConfig |> plugin.getExecutedMigrations |> await
-              const migrationNames =
-                globby('*', { cwd: P.resolve('migrations', shortPluginName) })
-                |> await
-                |> sortBy(identity)
-                |> map(filename => P.basename(filename, '.js'))
-                |> pullAll(executedMigrations)
-              return zipObject(
-                migrationNames,
-                migrationNames
-                  |> map(filename =>
-                    require(P.resolve('migrations', shortPluginName, filename))
-                  )
-              )
-            })
-            |> promiseAll
+        shortPluginNames
+        |> map(async shortPluginName => {
+          const pluginName = pluginNameToPackageName(
+            shortPluginName,
+            'ceiling-plugin'
+          )
+
+          const pluginConfig = endpoint?.[pluginName]
+
+          const plugin = config.plugins[pluginName]
+
+          const executedMigrations =
+            pluginConfig |> plugin.getExecutedMigrations |> await
+
+          const migrationNames =
+            globby('*', { cwd: P.resolve('migrations', shortPluginName) })
             |> await
-        ) |> pickBy(pluginMigrations => !(pluginMigrations |> isEmpty))
+            |> sortBy(identity)
+            |> map(filename => P.basename(filename, '.js'))
+            |> pullAll(executedMigrations)
+
+          return [
+            pluginName,
+            migrationNames
+              |> map(filename => [
+                filename,
+                require(P.resolve('migrations', shortPluginName, filename)),
+              ])
+              |> fromPairs,
+          ]
+        })
+        |> promiseAll
+        |> await
+        |> fromPairs
+        |> pickBy(pluginMigrations => !(pluginMigrations |> isEmpty))
       if (
         !options.yes &&
         !(await (async () => {
@@ -129,6 +142,7 @@ export default {
             migrations
             |> mapValues((pluginMigrations, pluginName) => {
               const plugin = config.plugins[pluginName]
+
               return endent`
                 ${endpoint?.[pluginName] |> plugin.endpointToString}
                   ${
@@ -142,6 +156,7 @@ export default {
             |> values
             |> map(string => `${string}\n`)
             |> join('')
+
           return (
             inquirer.prompt({
               default: false,
@@ -161,19 +176,24 @@ export default {
       }
       if (config.plugins |> isEmpty) {
         console.log('No plugins specified. Doing nothing …')
+
         return
       }
+
       const runPluginMigrations = async (pluginMigrations, pluginName) => {
         const pluginConfig = config.endpoints[endpointName]?.[pluginName]
+
         const plugin = config.plugins[pluginName]
         console.log(`Migrating ${pluginConfig |> plugin.endpointToString} …`)
         await (pluginMigrations
           |> mapValues((migration, name) => () => {
             console.log(`  - ${name}`)
+
             return migration.up(pluginConfig |> plugin.getMigrationParams)
           })
           |> values
           |> sequential)
+
         return plugin.addExecutedMigrations(
           pluginConfig,
           pluginMigrations |> keys

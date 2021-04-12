@@ -1,3 +1,10 @@
+## [2.2.15](https://github.com/dword-design/ceiling/compare/v2.2.14...v2.2.15) (2021-04-12)
+
+
+### Bug Fixes
+
+* lock file maintenance ([#27](https://github.com/dword-design/ceiling/issues/27)) ([657a93d](https://github.com/dword-design/ceiling/commit/657a93d4dc2dff3681869c41d1d50a9ac7d5e887))
+
 ## [2.2.14](https://github.com/dword-design/ceiling/compare/v2.2.13...v2.2.14) (2021-03-31)
 
 

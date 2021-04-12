@@ -1,6 +1,6 @@
 {
   "name": "ceiling",
-  "version": "2.2.14",
+  "version": "2.2.15",
   "description": "An extensible Node.js library and command-line tool to sync databases and files between endpoints",
   "repository": "dword-design/ceiling",
   "funding": "https://www.buymeacoffee.com/dword",

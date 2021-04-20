@@ -1,3 +1,11 @@
+## [2.2.16](https://github.com/dword-design/ceiling/compare/v2.2.15...v2.2.16) (2021-04-20)
+
+
+### Bug Fixes
+
+* update config files ([3947f09](https://github.com/dword-design/ceiling/commit/3947f09c2fd3bdee6b8189464ba7c35183d23b3d))
+* updated package.json[description] ([#34](https://github.com/dword-design/ceiling/issues/34)) ([2367f16](https://github.com/dword-design/ceiling/commit/2367f16df8c7bb832b89e363945f431b43ee277e))
+
 ## [2.2.15](https://github.com/dword-design/ceiling/compare/v2.2.14...v2.2.15) (2021-04-12)
 
 

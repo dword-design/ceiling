@@ -50,7 +50,7 @@
 <!-- /BADGES -->
 
 <!-- DESCRIPTION/ -->
-An extensible Node.js library and command-line tool to sync databases and files between endpoints
+A Node.js library and command-line tool to sync databases and files between endpoints.
 <!-- /DESCRIPTION -->
 
 <!-- INSTALL/ -->

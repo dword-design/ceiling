@@ -1,3 +1,10 @@
+## [2.2.17](https://github.com/dword-design/ceiling/compare/v2.2.16...v2.2.17) (2021-04-26)
+
+
+### Bug Fixes
+
+* update dependency with-local-tmp-dir to v3 ([#35](https://github.com/dword-design/ceiling/issues/35)) ([a47346c](https://github.com/dword-design/ceiling/commit/a47346cf789e9d1e15ba6ac8be8018ee332fe62e))
+
 ## [2.2.16](https://github.com/dword-design/ceiling/compare/v2.2.15...v2.2.16) (2021-04-20)
 
 

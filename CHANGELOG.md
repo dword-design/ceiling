@@ -1,3 +1,19 @@
+# [3.0.0](https://github.com/dword-design/ceiling/compare/v2.2.17...v3.0.0) (2021-05-03)
+
+
+### Bug Fixes
+
+* update dependency @dword-design/base to v8 ([#38](https://github.com/dword-design/ceiling/issues/38)) ([1bef8bf](https://github.com/dword-design/ceiling/commit/1bef8bf1487bcef6caf8860dbcd936fe23e766f8))
+
+
+### BREAKING CHANGES
+
+* require Node.js >= 12
+
+Co-authored-by: Renovate Bot <bot@renovateapp.com>
+Co-authored-by: Sebastian Landwehr <info@dword-design.de>
+Co-authored-by: GitHub Actions <actions@github.com>
+
 ## [2.2.17](https://github.com/dword-design/ceiling/compare/v2.2.16...v2.2.17) (2021-04-26)
 
 

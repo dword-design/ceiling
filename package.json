@@ -27,7 +27,7 @@
     "cosmiconfig": "^7.0.0",
     "globby": "^11.0.1",
     "inquirer": "^8.0.0",
-    "make-cli": "^1.0.4",
+    "make-cli": "^2.0.0",
     "plugin-name-to-package-name": "^0.1.1",
     "promise-sequential": "^1.1.1",
     "resolve-from": "^5.0.0"

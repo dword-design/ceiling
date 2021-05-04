@@ -1,3 +1,12 @@
+## [3.0.2](https://github.com/dword-design/ceiling/compare/v3.0.1...v3.0.2) (2021-05-04)
+
+
+### Bug Fixes
+
+* update dependency @dword-design/functions to v4 ([#39](https://github.com/dword-design/ceiling/issues/39)) ([9d61128](https://github.com/dword-design/ceiling/commit/9d611280b8a52b0b33ee7f1098392688847cbe3c))
+* update dependency make-cli to v2 ([#40](https://github.com/dword-design/ceiling/issues/40)) ([476e8ca](https://github.com/dword-design/ceiling/commit/476e8ca283bf879c88dd217115baeeaf08f1a305))
+* update dependency output-files to v2 ([#41](https://github.com/dword-design/ceiling/issues/41)) ([3f46b6a](https://github.com/dword-design/ceiling/commit/3f46b6a0e08c799788e04f963660ac398c1ea682))
+
 ## [3.0.1](https://github.com/dword-design/ceiling/compare/v3.0.0...v3.0.1) (2021-05-04)
 
 

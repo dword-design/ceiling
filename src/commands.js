@@ -200,8 +200,9 @@ export default {
         )
       }
       await (migrations
-        |> mapValues((pluginMigrations, pluginName) => () =>
-          runPluginMigrations(pluginMigrations, pluginName)
+        |> mapValues(
+          (pluginMigrations, pluginName) => () =>
+            runPluginMigrations(pluginMigrations, pluginName)
         )
         |> values
         |> sequential)

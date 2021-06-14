@@ -1,3 +1,10 @@
+## [3.0.4](https://github.com/dword-design/ceiling/compare/v3.0.3...v3.0.4) (2021-06-14)
+
+
+### Bug Fixes
+
+* lock file maintenance ([#46](https://github.com/dword-design/ceiling/issues/46)) ([0ac8f91](https://github.com/dword-design/ceiling/commit/0ac8f9189e2fe762529269514edb56860696333b))
+
 ## [3.0.3](https://github.com/dword-design/ceiling/compare/v3.0.2...v3.0.3) (2021-05-28)
 
 

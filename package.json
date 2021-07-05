@@ -3,7 +3,7 @@
   "version": "3.0.4",
   "description": "A Node.js library and command-line tool to sync databases and files between endpoints.",
   "repository": "dword-design/ceiling",
-  "funding": "https://www.buymeacoffee.com/dword",
+  "funding": "https://github.com/sponsors/dword-design",
   "license": "MIT",
   "author": "Sebastian Landwehr <info@sebastianlandwehr.com>",
   "main": "dist/index.js",

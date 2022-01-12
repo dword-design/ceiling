@@ -1,3 +1,10 @@
+## [3.0.8](https://github.com/dword-design/ceiling/compare/v3.0.7...v3.0.8) (2022-01-12)
+
+
+### Bug Fixes
+
+* update config files ([c6da019](https://github.com/dword-design/ceiling/commit/c6da019aa82e41843f534c84078480e80693e456))
+
 ## [3.0.7](https://github.com/dword-design/ceiling/compare/v3.0.6...v3.0.7) (2022-01-04)
 
 

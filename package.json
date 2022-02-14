@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "@dword-design/base": "^8.0.0",
-    "execa": "^5.0.0",
+    "execa": "^6.0.0",
     "output-files": "^2.0.0",
     "p-event": "^4.1.0",
     "strip-ansi": "^6.0.0",

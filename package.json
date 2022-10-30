@@ -25,7 +25,7 @@
   "dependencies": {
     "@dword-design/functions": "^4.0.0",
     "cosmiconfig": "^7.0.0",
-    "globby": "^11.0.1",
+    "globby": "^13.0.0",
     "inquirer": "^8.0.0",
     "make-cli": "^2.0.0",
     "plugin-name-to-package-name": "^0.1.1",

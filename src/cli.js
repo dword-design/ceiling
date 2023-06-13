@@ -3,7 +3,7 @@
 import { mapValues, omit, values } from '@dword-design/functions'
 import makeCli from 'make-cli'
 
-import commands from './commands'
+import commands from './commands.js'
 
 makeCli({
   commands:

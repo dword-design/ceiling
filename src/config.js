@@ -24,8 +24,8 @@ export default {
     searchResult.endpoints || {}
     |> mapValues(
       mapKeys((pluginConfig, pluginName) =>
-        pluginNameToPackageName(pluginName, 'ceiling-plugin')
-      )
+        pluginNameToPackageName(pluginName, 'ceiling-plugin'),
+      ),
     ),
   plugins:
     pluginNames

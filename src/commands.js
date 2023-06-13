@@ -14,15 +14,15 @@ import {
   sortBy,
   values,
 } from '@dword-design/functions'
-import globby from 'globby'
+import { globby } from 'globby'
 import inquirer from 'inquirer'
 import P from 'path'
 import { transform as pluginNameToPackageName } from 'plugin-name-to-package-name'
 import sequential from 'promise-sequential'
 
-import config from './config'
+import config from './config.js'
 
-const sync = async (operation, endpointName = 'live', options) => {
+const sync = async (operation, endpointName = 'live', options = {}) => {
   const fromEndpoint =
     config.endpoints[operation === 'push' ? 'local' : endpointName]
 
@@ -49,9 +49,9 @@ const sync = async (operation, endpointName = 'live', options) => {
         inquirer.prompt({
           default: false,
           message: endent`
-        Are you sure you want to …
-        ${hints}
-      `,
+            Are you sure you want to …
+            ${hints}
+          `,
           name: 'confirm',
           type: 'confirm',
         })
@@ -76,8 +76,8 @@ const sync = async (operation, endpointName = 'live', options) => {
       const toPluginConfig = toEndpoint?.[pluginName]
       console.log(
         `${plugin.endpointToString(
-          fromPluginConfig
-        )} => ${plugin.endpointToString(toPluginConfig)} …`
+          fromPluginConfig,
+        )} => ${plugin.endpointToString(toPluginConfig)} …`,
       )
 
       return plugin.sync(fromPluginConfig, toPluginConfig)
@@ -91,7 +91,7 @@ export default {
   migrate: {
     arguments: '[endpoint]',
     description: 'Migrate data at an endpoint',
-    handler: async (endpointName = 'local', options) => {
+    handler: async (endpointName = 'local', options = {}) => {
       const endpoint = config.endpoints[endpointName]
 
       const shortPluginNames =
@@ -104,7 +104,7 @@ export default {
         |> map(async shortPluginName => {
           const pluginName = pluginNameToPackageName(
             shortPluginName,
-            'ceiling-plugin'
+            'ceiling-plugin',
           )
 
           const pluginConfig = endpoint?.[pluginName]
@@ -161,9 +161,9 @@ export default {
             inquirer.prompt({
               default: false,
               message: endent`
-            Are you sure you want to …
-            ${hints}
-          `,
+                Are you sure you want to …
+                ${hints}
+              `,
               name: 'confirm',
               type: 'confirm',
             })
@@ -196,13 +196,13 @@ export default {
 
         return plugin.addExecutedMigrations(
           pluginConfig,
-          pluginMigrations |> keys
+          pluginMigrations |> keys,
         )
       }
       await (migrations
         |> mapValues(
           (pluginMigrations, pluginName) => () =>
-            runPluginMigrations(pluginMigrations, pluginName)
+            runPluginMigrations(pluginMigrations, pluginName),
         )
         |> values
         |> sequential)

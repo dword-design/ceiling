@@ -1,3 +1,15 @@
+# [4.0.0](https://github.com/dword-design/ceiling/compare/v3.0.8...v4.0.0) (2023-06-13)
+
+
+### Bug Fixes
+
+* lock file maintenance ([#94](https://github.com/dword-design/ceiling/issues/94)) ([0cea1bb](https://github.com/dword-design/ceiling/commit/0cea1bb0db1957d69cd77246399451fad93021c8))
+
+
+### BREAKING CHANGES
+
+* drop node 12 and 14, esm
+
 ## [3.0.8](https://github.com/dword-design/ceiling/compare/v3.0.7...v3.0.8) (2022-01-12)
 
 

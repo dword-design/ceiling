@@ -1,62 +1,53 @@
 import { endent } from '@dword-design/functions'
+import tester from '@dword-design/tester'
+import testerPluginTmpDir from '@dword-design/tester-plugin-tmp-dir'
 import { execa } from 'execa'
 import { createRequire } from 'module'
 import outputFiles from 'output-files'
 import { pEvent } from 'p-event'
 import stripAnsi from 'strip-ansi'
-import withLocalTmpDir from 'with-local-tmp-dir'
 
 const _require = createRequire(import.meta.url)
 
-export default {
-  confirm: () =>
-    withLocalTmpDir(async () => {
+export default tester(
+  {
+    confirm: async () => {
       await outputFiles({
-        'ceiling.config.js': endent`
-          module.exports = {
-            plugins: ['mongodb', 'mysql'],
-            endpoints: {
-              local: {
-                mongodb: {
-                  host: 'mongodb-local.de',
-                },
-                mysql: {
-                  host: 'mysql-local.de',
-                },
+        '.ceilingrc.json': JSON.stringify({
+          endpoints: {
+            live: {
+              mongodb: {
+                host: 'mongodb-live.de',
               },
-              live: {
-                mongodb: {
-                  host: 'mongodb-live.de',
-                },
-                mysql: {
-                  host: 'mysql-live.de',
-                },
+              mysql: {
+                host: 'mysql-live.de',
               },
             },
-          }
-        `,
+            local: {
+              mongodb: {
+                host: 'mongodb-local.de',
+              },
+              mysql: {
+                host: 'mysql-local.de',
+              },
+            },
+          },
+          plugins: ['mongodb', 'mysql'],
+        }),
         node_modules: {
           'ceiling-plugin-mongodb/index.js': endent`
-            module.exports = {
+            export default {
               endpointToString: ({ host }) => \`mongodb://\${host}\`,
               sync: () => console.log('synced mongodb'),
             }
           `,
           'ceiling-plugin-mysql/index.js': endent`
-            module.exports = {
+            export default {
               endpointToString: ({ host }) => \`mysql://\${host}\`,
               sync: () => console.log('synced mysql'),
             }
           `,
         },
-        'package.json': endent`
-          {
-            "devDependencies": {
-              "ceiling-plugin-mongodb": "^1.0.0",
-              "ceiling-plugin-mysql": "^1.0.0"
-            }
-          }
-        `,
       })
 
       const childProcess = execa(_require.resolve('./cli.js'), ['pull'], {
@@ -79,25 +70,15 @@ export default {
         mysql://mysql-live.de => mysql://mysql-local.de …
         synced mysql
       `)
-    }),
-  'error inside plugin': () =>
-    withLocalTmpDir(async () => {
+    },
+    'error inside plugin': async () => {
       await outputFiles({
-        'ceiling.config.js': endent`
-          module.exports = {
-            plugins: ['mysql'],
-          }
-        `,
+        '.ceilingrc.json': JSON.stringify({
+          plugins: ['mysql'],
+        }),
         'node_modules/ceiling-plugin-mysql/index.js': endent`
-          module.exports = {
+          export default {
             sync: () => { throw new Error('foo') }
-          }
-        `,
-        'package.json': endent`
-          {
-            "devDependencies": {
-              "ceiling-plugin-mysql": "^1.0.0"
-            }
           }
         `,
       })
@@ -111,25 +92,15 @@ export default {
         undefined => undefined …
         foo
       `)
-    }),
-  'no endpointToString': () =>
-    withLocalTmpDir(async () => {
+    },
+    'no endpointToString': async () => {
       await outputFiles({
-        'ceiling.config.js': endent`
-          module.exports = {
-            plugins: ['mysql'],
-          }
-        `,
+        '.ceilingrc.json': JSON.stringify({
+          plugins: ['mysql'],
+        }),
         'node_modules/ceiling-plugin-mysql/index.js': endent`
-          module.exports = {
+          export default {
             sync: () => {},
-          }
-        `,
-        'package.json': endent`
-          {
-            "devDependencies": {
-              "ceiling-plugin-mysql": "^1.0.0"
-            }
           }
         `,
       })
@@ -138,68 +109,52 @@ export default {
         all: true,
       })
       expect(output.all).toEqual('undefined => undefined …')
-    }),
-  'no plugins': () =>
-    withLocalTmpDir(async () => {
+    },
+    'no plugins': async () => {
       const output = await execa(_require.resolve('./cli.js'), ['pull', '-y'], {
         all: true,
       })
       expect(output.all).toEqual('No plugins specified. Doing nothing …')
-    }),
-  'no sync': () =>
-    withLocalTmpDir(async () => {
+    },
+    'no sync': async () => {
       await outputFiles({
-        'ceiling.config.js': endent`
-          module.exports = {
-            plugins: ['mysql'],
-          }
-        `,
-        'node_modules/ceiling-plugin-mysql/index.js': endent`
-          module.exports = {}
-        `,
-        'package.json': endent`
-          {
-            "devDependencies": {
-              "ceiling-plugin-mysql": "^1.0.0"
-            }
-          }
-        `,
+        '.ceilingrc.json': JSON.stringify({
+          plugins: ['mysql'],
+        }),
+        'node_modules/ceiling-plugin-mysql/index.js': 'export default {}',
       })
 
       const output = await execa(_require.resolve('./cli.js'), ['pull', '-y'], {
         all: true,
       })
       expect(output.all).toEqual('undefined => undefined …')
-    }),
-  'two plugins': () =>
-    withLocalTmpDir(async () => {
+    },
+    'two plugins': async () => {
       await outputFiles({
-        'ceiling.config.js': endent`
-          module.exports = {
-            plugins: ['mysql', 'mongodb'],
-            endpoints: {
-              local: {
-                mysql: {
-                  host: 'mysql-local.de',
-                },
-                mongodb: {
-                  host: 'mongodb-local.de',
-                },
+        '.ceilingrc.json': JSON.stringify({
+          endpoints: {
+            live: {
+              mongodb: {
+                host: 'mongodb-live.de',
               },
-              live: {
-                mysql: {
-                  host: 'mysql-live.de',
-                },
-                mongodb: {
-                  host: 'mongodb-live.de',
-                },
+              mysql: {
+                host: 'mysql-live.de',
               },
             },
-          }
-        `,
+            local: {
+              mongodb: {
+                host: 'mongodb-local.de',
+              },
+              mysql: {
+                host: 'mysql-local.de',
+              },
+            },
+          },
+          plugins: ['mysql', 'mongodb'],
+        }),
         node_modules: {
           'ceiling-plugin-mongodb/index.js': endent`
-            module.exports = {
+            export default {
               endpointToString: ({ host }) => \`mongodb://\${host}\`,
               sync: (from, to) => {
                 console.log(from)
@@ -208,7 +163,7 @@ export default {
             }
           `,
           'ceiling-plugin-mysql/index.js': endent`
-            module.exports = {
+            export default {
               endpointToString: ({ host }) => \`mysql://\${host}\`,
               sync: (from, to) => {
                 console.log(from)
@@ -217,14 +172,6 @@ export default {
             }
           `,
         },
-        'package.json': endent`
-          {
-            "devDependencies": {
-              "ceiling-plugin-mysql": "^1.0.0",
-              "ceiling-plugin-mongodb": "^1.0.0"
-            }
-          }
-        `,
       })
 
       const output = await execa(_require.resolve('./cli.js'), ['pull', '-y'], {
@@ -238,41 +185,31 @@ export default {
         { host: 'mongodb-live.de' }
         { host: 'mongodb-local.de' }
       `)
-    }),
-  valid: () =>
-    withLocalTmpDir(async () => {
+    },
+    valid: async () => {
       await outputFiles({
-        'ceiling.config.js': endent`
-          module.exports = {
-            plugins: ['mysql'],
-            endpoints: {
-              local: {
-                mysql: {
-                  host: 'local.de',
-                },
-              },
-              live: {
-                mysql: {
-                  host: 'live.de',
-                },
+        '.ceilingrc.json': JSON.stringify({
+          endpoints: {
+            live: {
+              mysql: {
+                host: 'live.de',
               },
             },
-          }
-        `,
+            local: {
+              mysql: {
+                host: 'local.de',
+              },
+            },
+          },
+          plugins: ['mysql'],
+        }),
         'node_modules/ceiling-plugin-mysql/index.js': endent`
-          module.exports = {
+          export default {
             endpointToString: ({ host }) => \`mysql://\${host}\`,
             sync: (from, to) => {
               console.log(from)
               console.log(to)
             },
-          }
-        `,
-        'package.json': endent`
-          {
-            "devDependencies": {
-              "ceiling-plugin-mysql": "^1.0.0"
-            }
           }
         `,
       })
@@ -285,5 +222,7 @@ export default {
         { host: 'live.de' }
         { host: 'local.de' }
       `)
-    }),
-}
+    },
+  },
+  [testerPluginTmpDir()],
+)

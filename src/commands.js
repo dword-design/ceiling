@@ -16,13 +16,16 @@ import {
 } from '@dword-design/functions'
 import { globby } from 'globby'
 import inquirer from 'inquirer'
+import jiti from 'jiti'
 import P from 'path'
 import { transform as pluginNameToPackageName } from 'plugin-name-to-package-name'
 import sequential from 'promise-sequential'
 
-import config from './config.js'
+import loadConfig from './load-config.js'
 
 const sync = async (operation, endpointName = 'live', options = {}) => {
+  const config = await loadConfig()
+
   const fromEndpoint =
     config.endpoints[operation === 'push' ? 'local' : endpointName]
 
@@ -92,6 +95,13 @@ export default {
     arguments: '[endpoint]',
     description: 'Migrate data at an endpoint',
     handler: async (endpointName = 'local', options = {}) => {
+      const config = await loadConfig()
+
+      const jitiInstance = jiti(process.cwd(), {
+        esmResolve: true,
+        interopDefault: true,
+      })
+
       const endpoint = config.endpoints[endpointName]
 
       const shortPluginNames =
@@ -126,7 +136,7 @@ export default {
             migrationNames
               |> map(filename => [
                 filename,
-                require(P.resolve('migrations', shortPluginName, filename)),
+                jitiInstance(`./migrations/${shortPluginName}/${filename}`),
               ])
               |> fromPairs,
           ]

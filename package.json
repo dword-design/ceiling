@@ -41,7 +41,7 @@
     "@dword-design/tester-plugin-tmp-dir": "^2.1.26",
     "execa": "^7.1.1",
     "output-files": "^2.0.28",
-    "p-event": "^5.0.1",
+    "p-event": "^6.0.0",
     "strip-ansi": "^7.1.0"
   },
   "engines": {

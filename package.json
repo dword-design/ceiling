@@ -29,7 +29,7 @@
     "@dword-design/functions": "^5.0.20",
     "cosmiconfig": "^8.2.0",
     "globby": "^13.1.4",
-    "inquirer": "^9.2.7",
+    "inquirer": "^11.0.0",
     "jiti": "^1.18.2",
     "make-cli": "^3.0.4",
     "plugin-name-to-package-name": "^0.1.1",

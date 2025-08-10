@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "@dword-design/functions": "^5.0.20",
-    "cosmiconfig": "^8.2.0",
+    "cosmiconfig": "^9.0.0",
     "globby": "^13.1.4",
     "inquirer": "^9.2.7",
     "jiti": "^1.18.2",

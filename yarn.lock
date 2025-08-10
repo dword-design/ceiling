@@ -1380,6 +1380,13 @@
   dependencies:
     babel-plugin-add-module-exports "^1.0.2"
 
+"@dword-design/defu@^1.0.1":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@dword-design/defu/-/defu-1.0.3.tgz#071cb6ddb9e8d4642902c9be19144737ac36a6fd"
+  integrity sha512-QEM8a6CPIrMvudnuNDwr3IxWJ0dcMKG9tgxt3zuPk/NmXV0ejk4qxQJ1PfquJwRzu59UsqNpUAACMG485VMIUA==
+  dependencies:
+    defu "^6.1.4"
+
 "@dword-design/depcheck-parser-sass@^4.0.0":
   version "4.0.4"
   resolved "https://registry.yarnpkg.com/@dword-design/depcheck-parser-sass/-/depcheck-parser-sass-4.0.4.tgz#e94f1ffc593ded878e6877ed1251c6ed5d2e5328"
@@ -3513,6 +3520,11 @@ combined-stream@^1.0.6, combined-stream@~1.0.6:
   dependencies:
     delayed-stream "~1.0.0"
 
+commander@^12.0.0:
+  version "12.1.0"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-12.1.0.tgz#01423b36f501259fdaac4d0e4d60c96c991585d3"
+  integrity sha512-Vw8qHK3bZM9y/P10u3Vib8o/DdkvA2OtPtZvD871QKjy74Wj1WSKFILMPRPSdUSx5RFK1arlJzEtA4PkFgnbuA==
+
 commander@^4.0.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/commander/-/commander-4.1.1.tgz#9fd602bd936294e9e9ef46a3f4d6964044b18068"
@@ -3909,6 +3921,11 @@ define-property@^2.0.2:
   dependencies:
     is-descriptor "^1.0.2"
     isobject "^3.0.1"
+
+defu@^6.1.4:
+  version "6.1.4"
+  resolved "https://registry.yarnpkg.com/defu/-/defu-6.1.4.tgz#4e0c9cf9ff68fe5f3d7f2765cc1a012dfdcb0479"
+  integrity sha512-mEQCMmwJu317oSz8CwdIOdwf3xMif1ttiM8LTufzc3g6kR+9Pe236twL8j3IYT1F7GfRgGcW6MWxzZjLIkuHIg==
 
 del@^6.0.0:
   version "6.1.1"
@@ -7430,6 +7447,11 @@ locate-path@^7.1.0:
   dependencies:
     p-locate "^6.0.0"
 
+lodash-es@^4.17.21:
+  version "4.17.21"
+  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.21.tgz#43e626c46e6591b7750beb2b50117390c609e3ee"
+  integrity sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==
+
 lodash.camelcase@4.3.0, lodash.camelcase@^4.3.0:
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/lodash.camelcase/-/lodash.camelcase-4.3.0.tgz#b28aa6288a2b9fc651035c7711f65ab6190331a6"
@@ -7585,6 +7607,16 @@ make-cli@^3.0.0, make-cli@^3.0.4:
   dependencies:
     "@dword-design/functions" "^4.0.0"
     commander "^9.5.0"
+
+make-cli@^4.0.0:
+  version "4.0.8"
+  resolved "https://registry.yarnpkg.com/make-cli/-/make-cli-4.0.8.tgz#d49e49bcabe22ca40a1f91242c83177d87ee0aed"
+  integrity sha512-h+kzzkOlv7hFf9c4c6MhrFRix+ii1NNFaTyQJbR4aol84hFeepgicTlJLEfkFKGAIjlFbfNM1pL3iWK1aIRtRQ==
+  dependencies:
+    "@dword-design/defu" "^1.0.1"
+    commander "^12.0.0"
+    lodash-es "^4.17.21"
+    p-is-promise "^4.0.0"
 
 make-dir@^2.1.0:
   version "2.1.0"
@@ -8666,6 +8698,11 @@ p-is-promise@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/p-is-promise/-/p-is-promise-3.0.0.tgz#58e78c7dfe2e163cf2a04ff869e7c1dba64a5971"
   integrity sha512-Wo8VsW4IRQSKVXsJCn7TomUaVtyfjVDn3nUP7kE967BQk0CwFpdbZs0X0uk5sW9mkBa9eNM7hCMaG93WUAwxYQ==
+
+p-is-promise@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/p-is-promise/-/p-is-promise-4.0.0.tgz#479ef05c0577aafb62e807224cedf7484525134f"
+  integrity sha512-4G3B+86qsIAX/+ip/yhHX9WUcyFKYkQYtE5bGkjpZyGK0Re53RbHky2UKt6RQVkDbUXb8EJRb4iga2SaI360nQ==
 
 p-limit@^1.1.0:
   version "1.3.0"

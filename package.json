@@ -31,7 +31,7 @@
     "globby": "^13.1.4",
     "inquirer": "^9.2.7",
     "jiti": "^1.18.2",
-    "make-cli": "^3.0.4",
+    "make-cli": "^4.0.0",
     "plugin-name-to-package-name": "^0.1.1",
     "promise-sequential": "^1.1.1"
   },
